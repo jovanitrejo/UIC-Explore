@@ -11,9 +11,23 @@ func loadBuildingsJSON(data: Data) -> [String: Building]? {
     let decoder = JSONDecoder()
     do {
         let buildings = try decoder.decode([Building].self, from: data)
-        let buildingsDict = Dictionary(uniqueKeysWithValues: buildings.map {($0.id, $0)} )
+        let buildingsDict = Dictionary(uniqueKeysWithValues: buildings.map { ($0.id, $0) })
         return buildingsDict
+    } catch {
+        print("Error decoding JSON: \(error)")
+        return nil
+    }
+}
+
+func loadPlacesByCategoryJSON(data: Data) -> [PlacesOrganizedByCategory]? {
+    let decoder = JSONDecoder()
+    do {
+        let placesByCategory = try decoder.decode([PlacesOrganizedByCategory].self, from: data)
+        return placesByCategory
     } catch {
         return nil
     }
 }
+
+// Finds all places in a building. This function will be used when a building has been tapped on or searched for
+func findPlacesInBuidling(buildingID: String, places: [Place]) -> [Place] {return places.filter {$0.buildingID == buildingID}}

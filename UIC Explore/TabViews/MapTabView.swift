@@ -9,10 +9,19 @@ import SwiftUI
 
 struct MapTabView: View {
     @Binding var isSearching: Bool
-    @State var Buildings = [String: Building]? = nil
+    @Binding var selectedBuilding: Building?
+    var buildingsAsDict: [String: Building]
+    var buildingsArray: [Building]
+    init(buildingsAsDict: [String: Building], isSearching: Binding<Bool>, selectedBuilding: Binding<Building?>) {
+        self.buildingsAsDict = buildingsAsDict
+        self.buildingsArray = buildingsAsDict.map { $0.value }
+        self._isSearching = isSearching
+        self._selectedBuilding = selectedBuilding
+    }
+    @State var isLoading = true
     var body: some View {
         ZStack {
-            UIKitMapView()
+            UIKitMapView(buildings: buildingsArray, selectedBuilding: $selectedBuilding)
                 .ignoresSafeArea()
             VStack {
                 Spacer()
@@ -30,8 +39,4 @@ struct MapTabView: View {
             .padding(.bottom)
         }
     }
-}
-
-#Preview {
-    MapTabView(isSearching: .constant(false))
 }
