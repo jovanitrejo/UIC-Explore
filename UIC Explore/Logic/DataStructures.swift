@@ -1,12 +1,16 @@
+// This file holds all possible structs that will be used for UIC Explore
+
 import Foundation
 import CoreLocation
 
+// Used to act as a container that will hold all possible places
 class Building: Decodable, Identifiable, Equatable {
     let id: String
     let name: String
     let address: String
     let coordinates: CLLocationCoordinate2D
     let type: String
+    let image: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -19,10 +23,20 @@ class Building: Decodable, Identifiable, Equatable {
         case houseNumber = "addr:housenumber"
         case street = "addr:street"
         case type
+        case image
     }
     
     enum GeometryKeys: String, CodingKey {
         case coordinates
+    }
+    
+    init(id: String, name: String, address: String, coordinates: CLLocationCoordinate2D, type: String, image: String) {
+        self.id = id
+        self.name = name
+        self.address = address
+        self.coordinates = coordinates
+        self.type = type
+        self.image = image
     }
     
     required init(from decoder: Decoder) throws {
@@ -35,6 +49,7 @@ class Building: Decodable, Identifiable, Equatable {
         let street = try propertiesContainer.decodeIfPresent(String.self, forKey: .street) ?? ""
         address = "\(houseNumber) \(street)\nChicago, IL"
         type = try propertiesContainer.decode(String.self, forKey: .type)
+        image = try propertiesContainer.decode(String.self, forKey: .image)
         
         let geometryContainer = try container.nestedContainer(keyedBy: GeometryKeys.self, forKey: .geometry)
         let coordinatesArray = try geometryContainer.decode([[[Double]]].self, forKey: .coordinates).flatMap { $0 }

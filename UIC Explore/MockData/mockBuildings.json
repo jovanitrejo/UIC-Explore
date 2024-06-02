@@ -15,7 +15,8 @@
         "layer": "1",
         "name": "Academic and Residential Complex (ARC)",
         "source": "https://housing.uic.edu/residentialcomplex/",
-        "website": "https://housing.uic.edu/residentialcomplex/"
+        "website": "https://housing.uic.edu/residentialcomplex/",
+        "image": "arcimage.jpg"
       },
       "geometry": {
         "type": "Polygon",
