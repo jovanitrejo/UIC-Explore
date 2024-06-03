@@ -29,5 +29,21 @@ func loadPlacesByCategoryJSON(data: Data) -> [PlacesOrganizedByCategory]? {
     }
 }
 
-// Finds all places in a building. This function will be used when a building has been tapped on or searched for
-func findPlacesInBuidling(buildingID: String, places: [Place]) -> [Place] {return places.filter {$0.buildingID == buildingID}}
+// Finds all places in building and will return organized by category
+func findPlacesInBuilding(allPlaces: [PlacesOrganizedByCategory], buildingID: String) -> [PlacesOrganizedByCategory] {
+    var placesInBuilding: [PlacesOrganizedByCategory] = []
+    
+    for category in allPlaces {
+        var placesForOneCategory: [Place] = []
+        for place in category.places {
+            if place.buildingID == buildingID {
+                placesForOneCategory.append(place)
+            }
+        }
+        if !placesForOneCategory.isEmpty {
+            placesInBuilding.append(PlacesOrganizedByCategory(category: category.category, places: placesForOneCategory))
+        }
+    }
+    
+    return placesInBuilding
+}

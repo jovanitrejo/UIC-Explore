@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  UIC Expore
+//  UIC Explore
 //
 //  Created by Jovani Trejo on 6/1/24.
 //
@@ -14,7 +14,14 @@ struct ContentView: View {
     @State var selectedTabView = 1
     @State var isLoading = true
     // All building data loaded from JSON
-    @State var buildings: [String: Building]? = nil
+    @State var buildings: [String: Building]? = nil {
+        didSet {
+            if selectedBuilding != nil {
+                showSheet = true
+                isViewingDetails = true
+            }
+        }
+    }
     
     // Optional selectedBuilding based on if user taps on directoryItem or Marker
     @State var selectedBuilding: Building? = nil
@@ -48,11 +55,17 @@ struct ContentView: View {
                     showSheet = true
                 }
             })
+            .onChange(of: showSheet, {
+                if selectedBuilding != nil && showSheet {
+                    isViewingDetails = true
+                }
+            })
             .sheet(isPresented: $showSheet, onDismiss: {
                 selectedBuilding = nil
+                isViewingDetails = false
             }, content: {
                 if isViewingDetails {
-                    //DetailsView()
+                    DetailsView(selectedBuilding: $selectedBuilding)
                 } else if isSearching {
                     //SearchView()
                 }

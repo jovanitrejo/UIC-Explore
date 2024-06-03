@@ -78,6 +78,11 @@ class PlacesOrganizedByCategory: Decodable, Identifiable {
     var category: String
     var places: [Place]
     
+    init(category: String, places: [Place]) {
+        self.category = category
+        self.places = places
+    }
+    
     enum CodingKeys: String, CodingKey {
         case category
         case places
@@ -95,17 +100,20 @@ class Place: Decodable, Identifiable {
     var name: String
     var description: String
     var buildingID: String
+    var image: String
     
-    init(name: String, description: String, buildingID: String) {
+    init(name: String, description: String, buildingID: String, image: String) {
         self.name = name
         self.description = description
         self.buildingID = buildingID
+        self.image = image
     }
     
     enum CodingKeys: String, CodingKey {
         case name
         case description
         case buildingID
+        case image
     }
     
     required init(from decoder: Decoder) throws {
@@ -113,5 +121,6 @@ class Place: Decodable, Identifiable {
         self.name = try container.decode(String.self, forKey: .name)
         self.description = try container.decode(String.self, forKey: .description)
         self.buildingID = try container.decode(String.self, forKey: .buildingID)
+        self.image = try container.decode(String.self, forKey: .image)
     }
 }

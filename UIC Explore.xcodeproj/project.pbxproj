@@ -21,6 +21,7 @@
 		0D28159E2C0B9DEC00032A8F /* mockPlacesByCategory.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D2815932C0B9DEC00032A8F /* mockPlacesByCategory.json */; };
 		0D2815A12C0C1E8200032A8F /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2815A02C0C1E8200032A8F /* DetailsView.swift */; };
 		0D2815A32C0C1EDD00032A8F /* TestingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2815A22C0C1EDD00032A8F /* TestingData.swift */; };
+		0D42AE4C2C0D5AB400ACB243 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		0D2815932C0B9DEC00032A8F /* mockPlacesByCategory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mockPlacesByCategory.json; sourceTree = "<group>"; };
 		0D2815A02C0C1E8200032A8F /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		0D2815A22C0C1EDD00032A8F /* TestingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingData.swift; sourceTree = "<group>"; };
+		0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				0D2815872C0B9DEC00032A8F /* MapViewRepresentable.swift */,
+				0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */,
 				0D2815882C0B9DEC00032A8F /* UIButtonView.swift */,
 			);
 			path = SubViews;
@@ -217,6 +220,7 @@
 				0D2815962C0B9DEC00032A8F /* UIButtonView.swift in Sources */,
 				0D2815952C0B9DEC00032A8F /* MapViewRepresentable.swift in Sources */,
 				0D2815A12C0C1E8200032A8F /* DetailsView.swift in Sources */,
+				0D42AE4C2C0D5AB400ACB243 /* PlaceCardView.swift in Sources */,
 				0D2815982C0B9DEC00032A8F /* Functions.swift in Sources */,
 				0D2815992C0B9DEC00032A8F /* MapTabView.swift in Sources */,
 				0D2815A32C0C1EDD00032A8F /* TestingData.swift in Sources */,
