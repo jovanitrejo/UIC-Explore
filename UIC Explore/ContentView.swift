@@ -25,6 +25,7 @@ struct ContentView: View {
     
     // Optional selectedBuilding based on if user taps on directoryItem or Marker
     @State var selectedBuilding: Building? = nil
+    @State var selectedPlace: Place? = nil
     
     // Places organized by category
     @State var allPlacesOrganizedByCategory: [PlacesOrganizedByCategory]? = nil
@@ -41,18 +42,41 @@ struct ContentView: View {
                 MapTabView(buildingsAsDict: buildings!, isSearching: $isSearching, selectedBuilding: $selectedBuilding).tabItem { Image(systemName: "map")
                     Text("Map")
                 }.tag(1)
-                Text("Directory Under Construction").tabItem {
-                    Image(systemName: "mappin.circle")
-                    Text("Directory")
-                }.tag(2)
+                if let buildings = buildings {
+                    if let places = allPlacesOrganizedByCategory {
+                        DirectoryTabView(allPlacesByCategory: places, allBuildings: buildings, selectedBuilding: $selectedBuilding, selectedPlace: $selectedPlace, selectedTab: $selectedTabView)
+                            .tabItem {
+                                Image(systemName: "mappin.circle")
+                                Text("Directory")
+                            }.tag(2)
+                            
+                    }
+                }
                 Text("News Under Construction").tabItem {
                     Image(systemName: "newspaper")
                     Text("News")
                 }
             })
+            .onChange(of: isSearching, {
+                if isSearching {
+                    showSheet = true
+                } else {
+                    if !isSearching && selectedBuilding != nil {
+                        isViewingDetails = true
+                    }
+                }
+            })
+            .onChange(of: selectedPlace == nil, {
+                if selectedPlace != nil {
+                    selectedBuilding = buildings![selectedPlace!.buildingID]
+                    isViewingDetails = true
+                }
+            })
             .onChange(of: selectedBuilding, {
                 if selectedBuilding != nil {
                     showSheet = true
+                } else if selectedBuilding == nil && showSheet == true {
+                    showSheet = false
                 }
             })
             .onChange(of: showSheet, {
@@ -61,13 +85,22 @@ struct ContentView: View {
                 }
             })
             .sheet(isPresented: $showSheet, onDismiss: {
+                selectedPlace = nil
                 selectedBuilding = nil
                 isViewingDetails = false
+                isSearching = false
             }, content: {
-                if isViewingDetails {
-                    DetailsView(selectedBuilding: $selectedBuilding)
-                } else if isSearching {
-                    //SearchView()
+                if selectedBuilding != nil {
+                    if isViewingDetails {
+                        if let nonOptionalBinding = selectedBuilding {
+                            DetailsView(selectedBuilding: nonOptionalBinding, allPlaces: findPlacesInBuilding(allPlaces: allPlacesOrganizedByCategory!, buildingID: selectedBuilding!.id), selectedPlace: $selectedPlace)
+                                .presentationDetents([.medium, .large])
+                                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                        }
+                    }
+                } else {
+                    SearchView(allBuildings: buildings!, allPlaces: allPlacesOrganizedByCategory!, selectedBuilding: $selectedBuilding, selectedPlace: $selectedPlace, isSearching: $isSearching)
+                        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
                 }
             })
         }
@@ -76,12 +109,12 @@ struct ContentView: View {
         // Loading building data...
         var loadedBuildings = false
         var loadedPlaces = false
-        guard let url = Bundle.main.url(forResource: "mockBuildings", withExtension: "json") else {
+        guard let url = Bundle.main.url(forResource: "uicBuildings", withExtension: "json") else {
             print("Failed to locate mockBuildings in bundle.")
             return
         }
                 
-        guard let placesURL = Bundle.main.url(forResource: "mockPlacesByCategory", withExtension: "json") else {
+        guard let placesURL = Bundle.main.url(forResource: "uicPlaces", withExtension: "json") else {
             print("Failed to locate mockPlacesByCategory in bundle.")
             return
         }

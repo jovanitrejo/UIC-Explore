@@ -6,18 +6,18 @@ class BuildingAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var type: String
-    var buildingData: Building
+    var buildingID: String
     
-    init(coordinate: CLLocationCoordinate2D, title: String, type: String, buildingData: Building) {
+    init(coordinate: CLLocationCoordinate2D, title: String, type: String, buildingID: String) {
         self.coordinate = coordinate
         self.title = title
         self.type = type
-        self.buildingData = buildingData
+        self.buildingID = buildingID
     }
 }
 
 struct UIKitMapView: UIViewRepresentable {
-    var buildings: [Building]
+    var buildings: [String: Building]
     @Binding var selectedBuilding: Building?
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: UIKitMapView
@@ -42,14 +42,9 @@ struct UIKitMapView: UIViewRepresentable {
 
             // Customize the pin color based on the building type
             if let buildingAnnotation = annotation as? BuildingAnnotation {
-                switch buildingAnnotation.type {
-                case "housing":
-                    annotationView?.markerTintColor = .systemBlue
-                case "type2":
-                    annotationView?.markerTintColor = .green
-                default:
-                    annotationView?.markerTintColor = .red
-                }
+                let pair = determineIconTypeAndColor(type: buildingAnnotation.type)
+                annotationView?.glyphImage = UIImage(systemName: pair.0)
+                annotationView?.markerTintColor = pair.1
             }
 
             return annotationView
@@ -57,7 +52,7 @@ struct UIKitMapView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
             if let annotation = view.annotation as? BuildingAnnotation {
-                parent.selectedBuilding = annotation.buildingData
+                parent.selectedBuilding = parent.buildings[annotation.buildingID]
             }
         }
         
@@ -80,8 +75,8 @@ struct UIKitMapView: UIViewRepresentable {
         map.delegate = context.coordinator
 
         // Add custom annotations
-        let annotations = buildings.map { building -> BuildingAnnotation in
-            return BuildingAnnotation(coordinate: building.coordinates, title: building.name, type: building.type, buildingData: building)
+        let annotations = buildings.values.map { building -> BuildingAnnotation in
+            return BuildingAnnotation(coordinate: building.coordinates, title: building.name, type: building.type, buildingID: building.id)
         }
         map.addAnnotations(annotations)
         
@@ -92,7 +87,13 @@ struct UIKitMapView: UIViewRepresentable {
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
         if selectedBuilding != nil {
-            uiView.setRegion(MKCoordinateRegion(center: selectedBuilding!.coordinates, latitudinalMeters: 500, longitudinalMeters: 500), animated: true)
+            uiView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: selectedBuilding!.coordinates.latitude - 0.002, longitude: selectedBuilding!.coordinates.longitude), latitudinalMeters: 500, longitudinalMeters: 500), animated: true)
+            if let annotation = uiView.annotations.first(where: {
+                guard let buildingAnnotation = $0 as? BuildingAnnotation else {return false}
+                return buildingAnnotation.buildingID == selectedBuilding!.id
+            }) {
+                uiView.selectAnnotation(annotation, animated: true)
+            }
         } else {
             context.coordinator.deselectAnnotation(uiView)
         }

@@ -22,6 +22,12 @@
 		0D2815A12C0C1E8200032A8F /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2815A02C0C1E8200032A8F /* DetailsView.swift */; };
 		0D2815A32C0C1EDD00032A8F /* TestingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2815A22C0C1EDD00032A8F /* TestingData.swift */; };
 		0D42AE4C2C0D5AB400ACB243 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */; };
+		0D670B922C0DEF25008C9E76 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D670B912C0DEF25008C9E76 /* SearchView.swift */; };
+		0D670B942C0DF046008C9E76 /* SingleSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D670B932C0DF046008C9E76 /* SingleSearchResultView.swift */; };
+		0D670B962C0DF24D008C9E76 /* ColoredUIButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D670B952C0DF24D008C9E76 /* ColoredUIButtonView.swift */; };
+		0D7A69CA2C0EC13200B3825D /* uicBuildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7A69C82C0EC13200B3825D /* uicBuildings.json */; };
+		0D7A69CB2C0EC13200B3825D /* uicPlaces.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7A69C92C0EC13200B3825D /* uicPlaces.json */; };
+		0DFA55272C0E448A008E4D05 /* DirectoryTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA55262C0E448A008E4D05 /* DirectoryTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +47,12 @@
 		0D2815A02C0C1E8200032A8F /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		0D2815A22C0C1EDD00032A8F /* TestingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingData.swift; sourceTree = "<group>"; };
 		0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
+		0D670B912C0DEF25008C9E76 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0D670B932C0DF046008C9E76 /* SingleSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSearchResultView.swift; sourceTree = "<group>"; };
+		0D670B952C0DF24D008C9E76 /* ColoredUIButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredUIButtonView.swift; sourceTree = "<group>"; };
+		0D7A69C82C0EC13200B3825D /* uicBuildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uicBuildings.json; sourceTree = "<group>"; };
+		0D7A69C92C0EC13200B3825D /* uicPlaces.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uicPlaces.json; sourceTree = "<group>"; };
+		0DFA55262C0E448A008E4D05 /* DirectoryTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +87,7 @@
 			children = (
 				0D2815902C0B9DEC00032A8F /* ContentView.swift */,
 				0D28159F2C0C1E6500032A8F /* SheetViews */,
+				0D7A69C72C0EC12500B3825D /* ProductionData */,
 				0D28158C2C0B9DEC00032A8F /* Logic */,
 				0D2815942C0B9DEC00032A8F /* MockData */,
 				0D2815892C0B9DEC00032A8F /* SubViews */,
@@ -98,8 +111,10 @@
 			isa = PBXGroup;
 			children = (
 				0D2815872C0B9DEC00032A8F /* MapViewRepresentable.swift */,
+				0D670B952C0DF24D008C9E76 /* ColoredUIButtonView.swift */,
 				0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */,
 				0D2815882C0B9DEC00032A8F /* UIButtonView.swift */,
+				0D670B932C0DF046008C9E76 /* SingleSearchResultView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -117,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				0D28158D2C0B9DEC00032A8F /* MapTabView.swift */,
+				0DFA55262C0E448A008E4D05 /* DirectoryTabView.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -136,8 +152,18 @@
 			isa = PBXGroup;
 			children = (
 				0D2815A02C0C1E8200032A8F /* DetailsView.swift */,
+				0D670B912C0DEF25008C9E76 /* SearchView.swift */,
 			);
 			path = SheetViews;
+			sourceTree = "<group>";
+		};
+		0D7A69C72C0EC12500B3825D /* ProductionData */ = {
+			isa = PBXGroup;
+			children = (
+				0D7A69C82C0EC13200B3825D /* uicBuildings.json */,
+				0D7A69C92C0EC13200B3825D /* uicPlaces.json */,
+			);
+			path = ProductionData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +230,8 @@
 				0D28159C2C0B9DEC00032A8F /* mockBuildings.json in Resources */,
 				0D28159E2C0B9DEC00032A8F /* mockPlacesByCategory.json in Resources */,
 				0D28157E2C0B9DC000032A8F /* Assets.xcassets in Resources */,
+				0D7A69CA2C0EC13200B3825D /* uicBuildings.json in Resources */,
+				0D7A69CB2C0EC13200B3825D /* uicPlaces.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,11 +247,15 @@
 				0D28159B2C0B9DEC00032A8F /* ContentView.swift in Sources */,
 				0D2815962C0B9DEC00032A8F /* UIButtonView.swift in Sources */,
 				0D2815952C0B9DEC00032A8F /* MapViewRepresentable.swift in Sources */,
+				0D670B942C0DF046008C9E76 /* SingleSearchResultView.swift in Sources */,
 				0D2815A12C0C1E8200032A8F /* DetailsView.swift in Sources */,
 				0D42AE4C2C0D5AB400ACB243 /* PlaceCardView.swift in Sources */,
+				0D670B962C0DF24D008C9E76 /* ColoredUIButtonView.swift in Sources */,
 				0D2815982C0B9DEC00032A8F /* Functions.swift in Sources */,
+				0DFA55272C0E448A008E4D05 /* DirectoryTabView.swift in Sources */,
 				0D2815992C0B9DEC00032A8F /* MapTabView.swift in Sources */,
 				0D2815A32C0C1EDD00032A8F /* TestingData.swift in Sources */,
+				0D670B922C0DEF25008C9E76 /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +393,7 @@
 				DEVELOPMENT_TEAM = 4VY9597K6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -392,6 +425,7 @@
 				DEVELOPMENT_TEAM = 4VY9597K6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

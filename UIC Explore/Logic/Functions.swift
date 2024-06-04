@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 func loadBuildingsJSON(data: Data) -> [String: Building]? {
     let decoder = JSONDecoder()
@@ -44,6 +45,29 @@ func findPlacesInBuilding(allPlaces: [PlacesOrganizedByCategory], buildingID: St
             placesInBuilding.append(PlacesOrganizedByCategory(category: category.category, places: placesForOneCategory))
         }
     }
-    
+    print("Function complete!")
     return placesInBuilding
 }
+
+func determineIconTypeAndColor(type: String) -> (String, UIColor) {
+    switch(type) {
+    case "academic":
+        return ("graduationcap.circle.fill", UIColor.systemBrown)
+    case "office":
+        return ("building.2.crop.circle.fill", UIColor.systemBrown)
+    case "food":
+        return ("fork.knife.circle.fill", UIColor.systemOrange)
+    case "housing":
+        return ("house.circle.fill", UIColor.systemBlue)
+    case "recreation":
+        return ("figure.run.circle.fill", UIColor.systemTeal)
+    case "research":
+        return ("apple.terminal.circle.fill", UIColor.systemGreen)
+    case "medical":
+        return ("cross.case.circle.fill", UIColor.systemRed)
+    default:
+        return ("questionmark.circle.fill", UIColor.systemGray)
+    }
+}
+
+//
