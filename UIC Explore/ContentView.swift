@@ -33,7 +33,7 @@ struct ContentView: View {
         if isLoading {
             ProgressView()
                 .onAppear(perform: {
-                    loadData()
+                    loadDataSecurely()
                     configureTabBar()
                 })
         } else {
@@ -52,10 +52,10 @@ struct ContentView: View {
                             
                     }
                 }
-                Text("News Under Construction").tabItem {
+                NewsTabView().tabItem {
                     Image(systemName: "newspaper")
                     Text("News")
-                }
+                }.tag(3)
             })
             .onChange(of: isSearching, {
                 if isSearching {
@@ -139,8 +139,80 @@ struct ContentView: View {
             print("Failed to load and decode placesByCategory.json: \(error)")
         }
         
+        print(loadedBuildings)
+        print(loadedPlaces)
+        
         if loadedPlaces && loadedBuildings {
             isLoading = false
+        }
+    }
+    
+    func loadDataSecurely() {
+        var loadedBuildings = false
+        var loadedPlaces = false
+        
+        let dispatchGroup = DispatchGroup()
+        
+        let buildingsURLString = getJSONURL(filename: "uicBuildings.json")
+        guard let buildingsURL = URL(string: buildingsURLString) else {
+            print("Invalid Buildings URL")
+            return
+        }
+        
+        let placesURLString = getJSONURL(filename: "uicPlaces.json")
+        guard let placesURL = URL(string: placesURLString) else {
+            print("Invalid Buildings URL")
+            return
+        }
+        
+        dispatchGroup.enter()
+        URLSession.shared.dataTask(with: buildingsURL) { data, response, error in
+            defer { dispatchGroup.leave() }
+            
+            if let error = error {
+                print("Error fetching buildings JSON: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received for buildings")
+                return
+            }
+            
+            buildings = loadBuildingsJSON(data: data)
+            if buildings != nil {
+                loadedBuildings = true
+            }
+        }.resume()
+        
+        dispatchGroup.enter()
+        URLSession.shared.dataTask(with: placesURL) { data, response, error in
+            defer { dispatchGroup.leave() }
+            
+            if let error = error {
+                print("Error fetching places JSON: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received for places")
+                return
+            }
+            
+            allPlacesOrganizedByCategory = loadPlacesByCategoryJSON(data: data)
+            if allPlacesOrganizedByCategory != nil {
+                loadedPlaces = true
+            }
+        }.resume()
+        
+        dispatchGroup.notify(queue: .main) {
+            print(loadedBuildings)
+            print(loadedPlaces)
+            
+            if loadedPlaces && loadedBuildings {
+                isLoading = false
+                print("Data loading complete")
+            }
         }
     }
     

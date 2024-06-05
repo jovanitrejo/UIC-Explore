@@ -29,7 +29,7 @@ struct DirectoryTabView: View {
                             .padding(.leading)
                         Spacer()
                     }
-                    ScrollView(.horizontal, content: {
+                    ScrollView(.horizontal, showsIndicators: false, content: {
                         LazyHStack(content: {
                             ForEach(Array(allBuildings.values.enumerated()), id: \.element.id) { index, building in
                                 Button(action: {

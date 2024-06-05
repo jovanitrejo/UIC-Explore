@@ -16,6 +16,7 @@ struct SingleSearchResultView: View {
                 .foregroundStyle(Color(iconMaterial.1))
             Spacer()
             Text(resultName)
+                .multilineTextAlignment(.trailing)
         }
         .frame(height: 50)
         .padding(.horizontal, 30)

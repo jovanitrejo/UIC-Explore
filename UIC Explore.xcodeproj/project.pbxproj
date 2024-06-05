@@ -27,6 +27,10 @@
 		0D670B962C0DF24D008C9E76 /* ColoredUIButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D670B952C0DF24D008C9E76 /* ColoredUIButtonView.swift */; };
 		0D7A69CA2C0EC13200B3825D /* uicBuildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7A69C82C0EC13200B3825D /* uicBuildings.json */; };
 		0D7A69CB2C0EC13200B3825D /* uicPlaces.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D7A69C92C0EC13200B3825D /* uicPlaces.json */; };
+		0D7A69CD2C10ABF900B3825D /* NewsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7A69CC2C10ABF900B3825D /* NewsTabView.swift */; };
+		0D7A69D12C10B5C000B3825D /* NewsArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7A69D02C10B5C000B3825D /* NewsArticleView.swift */; };
+		0DCEE52E2C10C6780065668E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 0DCEE52D2C10C6780065668E /* SwiftSoup */; };
+		0DCEE5302C10D7980065668E /* PrivateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEE52F2C10D7980065668E /* PrivateFunctions.swift */; };
 		0DFA55272C0E448A008E4D05 /* DirectoryTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA55262C0E448A008E4D05 /* DirectoryTabView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +56,9 @@
 		0D670B952C0DF24D008C9E76 /* ColoredUIButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredUIButtonView.swift; sourceTree = "<group>"; };
 		0D7A69C82C0EC13200B3825D /* uicBuildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uicBuildings.json; sourceTree = "<group>"; };
 		0D7A69C92C0EC13200B3825D /* uicPlaces.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uicPlaces.json; sourceTree = "<group>"; };
+		0D7A69CC2C10ABF900B3825D /* NewsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTabView.swift; sourceTree = "<group>"; };
+		0D7A69D02C10B5C000B3825D /* NewsArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticleView.swift; sourceTree = "<group>"; };
+		0DCEE52F2C10D7980065668E /* PrivateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateFunctions.swift; sourceTree = "<group>"; };
 		0DFA55262C0E448A008E4D05 /* DirectoryTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DCEE52E2C10C6780065668E /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				0D2815872C0B9DEC00032A8F /* MapViewRepresentable.swift */,
+				0D7A69D02C10B5C000B3825D /* NewsArticleView.swift */,
 				0D670B952C0DF24D008C9E76 /* ColoredUIButtonView.swift */,
 				0D42AE4B2C0D5AB400ACB243 /* PlaceCardView.swift */,
 				0D2815882C0B9DEC00032A8F /* UIButtonView.swift */,
@@ -124,6 +133,7 @@
 			children = (
 				0D28158A2C0B9DEC00032A8F /* DataStructures.swift */,
 				0D28158B2C0B9DEC00032A8F /* Functions.swift */,
+				0DCEE52F2C10D7980065668E /* PrivateFunctions.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -133,6 +143,7 @@
 			children = (
 				0D28158D2C0B9DEC00032A8F /* MapTabView.swift */,
 				0DFA55262C0E448A008E4D05 /* DirectoryTabView.swift */,
+				0D7A69CC2C10ABF900B3825D /* NewsTabView.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -182,6 +193,9 @@
 			dependencies = (
 			);
 			name = "UIC Explore";
+			packageProductDependencies = (
+				0DCEE52D2C10C6780065668E /* SwiftSoup */,
+			);
 			productName = "UIC Explore";
 			productReference = 0D2815762C0B9DBF00032A8F /* UIC Explore.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 0D28156D2C0B9DBF00032A8F;
+			packageReferences = (
+				0DCEE52C2C10C6780065668E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 0D2815772C0B9DBF00032A8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -245,6 +262,7 @@
 				0D2815972C0B9DEC00032A8F /* DataStructures.swift in Sources */,
 				0D28159A2C0B9DEC00032A8F /* UIC_ExploreApp.swift in Sources */,
 				0D28159B2C0B9DEC00032A8F /* ContentView.swift in Sources */,
+				0D7A69CD2C10ABF900B3825D /* NewsTabView.swift in Sources */,
 				0D2815962C0B9DEC00032A8F /* UIButtonView.swift in Sources */,
 				0D2815952C0B9DEC00032A8F /* MapViewRepresentable.swift in Sources */,
 				0D670B942C0DF046008C9E76 /* SingleSearchResultView.swift in Sources */,
@@ -252,7 +270,9 @@
 				0D42AE4C2C0D5AB400ACB243 /* PlaceCardView.swift in Sources */,
 				0D670B962C0DF24D008C9E76 /* ColoredUIButtonView.swift in Sources */,
 				0D2815982C0B9DEC00032A8F /* Functions.swift in Sources */,
+				0DCEE5302C10D7980065668E /* PrivateFunctions.swift in Sources */,
 				0DFA55272C0E448A008E4D05 /* DirectoryTabView.swift in Sources */,
+				0D7A69D12C10B5C000B3825D /* NewsArticleView.swift in Sources */,
 				0D2815992C0B9DEC00032A8F /* MapTabView.swift in Sources */,
 				0D2815A32C0C1EDD00032A8F /* TestingData.swift in Sources */,
 				0D670B922C0DEF25008C9E76 /* SearchView.swift in Sources */,
@@ -466,6 +486,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0DCEE52C2C10C6780065668E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0DCEE52D2C10C6780065668E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DCEE52C2C10C6780065668E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0D28156E2C0B9DBF00032A8F /* Project object */;
 }

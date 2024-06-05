@@ -80,7 +80,7 @@ struct UIKitMapView: UIViewRepresentable {
         }
         map.addAnnotations(annotations)
         
-        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 41.87082, longitude: -87.65919), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)), animated: true)
+        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 41.8708, longitude: -87.6505), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         
         return map
     }

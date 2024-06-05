@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct DetailsView: View {
     var selectedBuilding: Building
-    var imageURLBucket = "https://uiinfo-public-data-bucket.s3.amazonaws.com/UICImages/"
+    var imageURLBucket = "https://d27l1b6hp7elrj.cloudfront.net/UICImages/"
     var allPlaces: [PlacesOrganizedByCategory]? // Will be used if building was searched for or tapped on
     @Binding var selectedPlace: Place?
     
@@ -47,8 +48,17 @@ struct DetailsView: View {
                         }, placeholder: {
                             ProgressView()
                         })
-                        .padding(.bottom)
+                        .padding(.bottom, 5)
                         VStack {
+                            Button(action: {
+                                let location = MKPlacemark(coordinate: selectedBuilding.coordinates)
+                                let mapItem = MKMapItem(placemark: location)
+                                mapItem.name = selectedBuilding.name
+                                mapItem.openInMaps()
+                            }, label: {
+                                ColoredUIButtonView(color: Color(UIColor.systemBlue), text: "Open in Maps")
+                            })
+                            .padding(.bottom, 5)
                             HStack {
                                 Text("About")
                                     .font(.title3)
@@ -72,6 +82,7 @@ struct DetailsView: View {
                             Text(selectedPlace != nil ? "Other places in this building" : "Places in this building")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.bottom, 5)
                             Spacer()
                         }
                         .padding(.top)
@@ -107,6 +118,7 @@ struct DetailsView: View {
                                             }
                                         }
                                     }
+                                    .padding(.bottom, 10)
                                 })
                             }
                         }
@@ -114,7 +126,7 @@ struct DetailsView: View {
                 }
                 .id("top")
             }
-            .padding(.horizontal)
+            .safeAreaPadding([.bottom, .horizontal])
             .background(.regularMaterial)
             .transition(.slide)
         }

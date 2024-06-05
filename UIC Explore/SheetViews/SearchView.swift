@@ -24,6 +24,7 @@ struct SearchView: View {
                 .cornerRadius(10)
                 .frame(height: 80)
                 .padding(.horizontal)
+                .shadow(radius: 5)
             ScrollView(content: {
                 ForEach(filteredBuildings, id: \.id) { building in
                     Button(action: {
@@ -60,8 +61,9 @@ struct SearchView: View {
             filteredBuildings = allBuildings.values.map {$0}
             filteredPlaces = allPlaces.flatMap({$0.places})
         } else {
-            filteredBuildings = allBuildings.values.filter { $0.name.contains(searchText) }
-            filteredPlaces = allPlaces.flatMap {$0.places}.filter {$0.name.contains(searchText)}
+            let lowercasedSearchText = searchText.lowercased()
+            filteredBuildings = allBuildings.values.filter { $0.name.lowercased().contains(lowercasedSearchText) }
+            filteredPlaces = allPlaces.flatMap {$0.places}.filter {$0.name.lowercased().contains(lowercasedSearchText)}
         }
     }
 }

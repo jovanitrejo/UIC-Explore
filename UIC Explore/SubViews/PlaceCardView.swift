@@ -11,7 +11,7 @@ import Foundation
 struct PlaceCardView: View {
     var image: String
     var title: String
-    var imageURLBucket = "https://uiinfo-public-data-bucket.s3.amazonaws.com/UICImages/"
+    var imageURLBucket = "https://d27l1b6hp7elrj.cloudfront.net/UICImages/"
     var body: some View {
         VStack(content: {
             AsyncImage(url: URL(string: imageURLBucket + image), content: { image in
@@ -28,13 +28,13 @@ struct PlaceCardView: View {
                 ProgressView()
                     .frame(width: 200, height: 200)
             })
-            HStack {
+            HStack(alignment: .center, content: {
                 Text(title)
                     .padding([.horizontal, .bottom], 5)
                 Spacer()
-            }
+            })
         })
-        .frame(width: 200)
+        .frame(width: 200, height: 235)
         .background(Color(UIColor.systemBackground))
         .cornerRadius(5)
     }

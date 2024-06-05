@@ -2,6 +2,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftSoup
 
 // Used to act as a container that will hold all possible places
 class Building: Decodable, Identifiable, Equatable {
@@ -139,5 +140,79 @@ class Place: Decodable, Identifiable {
         self.buildingID = try container.decode(String.self, forKey: .buildingID)
         self.image = try container.decode(String.self, forKey: .image)
         self.type = try container.decode(String.self, forKey: .type)
+    }
+}
+
+struct NewsArticle {
+    var title: String
+    var link: String
+    var pubDate: String
+    var imageURL: String?
+}
+
+class RSSParser: NSObject, XMLParserDelegate {
+    private var items: [NewsArticle] = []
+    private var currentElement = ""
+    private var currentTitle: String = ""
+    private var currentLink: String = ""
+    private var currentPubDate: String = ""
+    private var currentFigureHTML: String = ""
+    private var completion: (([NewsArticle]) -> Void)?
+
+    func parse(data: Data, completion: @escaping ([NewsArticle]) -> Void) {
+        self.completion = completion
+        let parser = XMLParser(data: data)
+        parser.delegate = self
+        parser.parse()
+    }
+
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentElement = elementName
+        if currentElement == "item" {
+            currentTitle = ""
+            currentLink = ""
+            currentPubDate = ""
+            currentFigureHTML = ""
+        }
+    }
+
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        switch currentElement {
+        case "title":
+            currentTitle += string
+        case "link":
+            currentLink += string
+            print(currentLink)
+        case "pubDate":
+            currentPubDate += string
+        case "content:encoded":
+            currentFigureHTML += string
+        default:
+            break
+        }
+    }
+
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "item" {
+            let imageURL = extractImageURL(from: currentFigureHTML)
+            let item = NewsArticle(title: currentTitle, link: currentLink, pubDate: currentPubDate, imageURL: imageURL)
+            items.append(item)
+        }
+    }
+
+    func parserDidEndDocument(_ parser: XMLParser) {
+        completion?(items)
+    }
+
+    private func extractImageURL(from html: String) -> String? {
+        do {
+            let document = try SwiftSoup.parse(html)
+            if let imgElement = try document.select("img").first() {
+                return try imgElement.attr("src")
+            }
+        } catch {
+            print("Failed to parse HTML: \(error)")
+        }
+        return nil
     }
 }
