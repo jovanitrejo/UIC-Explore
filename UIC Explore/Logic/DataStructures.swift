@@ -116,6 +116,7 @@ class Place: Decodable, Identifiable {
     var buildingID: String
     var image: String
     var type: String
+    var room: String?
     
     init(name: String, description: String, buildingID: String, image: String, type: String) {
         self.name = name
@@ -131,6 +132,7 @@ class Place: Decodable, Identifiable {
         case buildingID
         case image
         case type
+        case room
     }
     
     required init(from decoder: Decoder) throws {
@@ -140,6 +142,7 @@ class Place: Decodable, Identifiable {
         self.buildingID = try container.decode(String.self, forKey: .buildingID)
         self.image = try container.decode(String.self, forKey: .image)
         self.type = try container.decode(String.self, forKey: .type)
+        self.room = try container.decodeIfPresent(String.self, forKey: .room)
     }
 }
 

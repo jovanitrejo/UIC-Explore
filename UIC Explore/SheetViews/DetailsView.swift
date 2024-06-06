@@ -27,8 +27,13 @@ struct DetailsView: View {
                                     Spacer()
                                 }
                                 HStack {
-                                    Text(selectedPlace != nil ? "at \(selectedBuilding.name)" : selectedBuilding.address)
-                                        .font(.footnote)
+                                    if selectedPlace != nil {
+                                        Text(selectedPlace?.room != nil ? "Room \(String( selectedPlace!.room!))\nat \(selectedBuilding.name)" : "at \(selectedBuilding.name)")
+                                            .font(.footnote)
+                                    } else {
+                                        Text(selectedBuilding.address)
+                                            .font(.footnote)
+                                    }
                                     Spacer()
                                 }
                             }
