@@ -19,3 +19,5 @@ let testPlacesByCategory = [PlacesOrganizedByCategory(category: "Food", places: 
 
 let testArticle = NewsArticle(title: "Test Title", link: "nil", pubDate: "Tue, 04 Jun 2024 13:44:09 +0000")
 let testArticleWithImage = NewsArticle(title: "Test Title", link: "nil", pubDate: "Tue, 04 Jun 2024 13:44:09 +0000", imageURL: "https://today.uic.edu/wp-content/uploads/2024/05/681A7286web-590x393.jpg")
+
+let knownGlitchCard = PlaceCardView(image: "jahhmuseumuic.jpg", title: "Jane Addams' Hull-House Museum")
