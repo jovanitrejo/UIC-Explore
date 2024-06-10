@@ -87,7 +87,7 @@ struct UIKitMapView: UIViewRepresentable {
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
         if selectedBuilding != nil {
-            uiView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: selectedBuilding!.coordinates.latitude - 0.002, longitude: selectedBuilding!.coordinates.longitude), latitudinalMeters: 500, longitudinalMeters: 500), animated: true)
+            uiView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: selectedBuilding!.coordinates.latitude - 0.0005, longitude: selectedBuilding!.coordinates.longitude), latitudinalMeters: 250, longitudinalMeters: 250), animated: true)
             if let annotation = uiView.annotations.first(where: {
                 guard let buildingAnnotation = $0 as? BuildingAnnotation else {return false}
                 return buildingAnnotation.buildingID == selectedBuilding!.id
