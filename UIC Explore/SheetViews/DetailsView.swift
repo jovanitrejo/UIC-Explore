@@ -119,7 +119,7 @@ struct DetailsView: View {
                                                 }, label: {
                                                     PlaceCardView(image: place.image, title: place.name)
                                                 })
-                                                .buttonStyle(PlainButtonStyle())
+                                                .foregroundStyle(Color.primary)
                                             }
                                         }
                                     }
