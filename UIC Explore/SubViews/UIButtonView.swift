@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UIButtonView: View {
+    @Environment(\.colorScheme) var viewMode
     let image: Image
     let text: String
     var body: some View {
@@ -19,6 +20,7 @@ struct UIButtonView: View {
         .padding(.vertical, 5.0)
         .background(.regularMaterial)
         .cornerRadius(20)
+        .foregroundStyle(Color(UIColor.systemGray))
     }
 }
 
