@@ -33,7 +33,7 @@ struct SearchView: View {
                     }, label: {
                         SingleSearchResultView(resultName: building.name, iconMaterial: determineIconTypeAndColor(type: building.type))
                     })
-                    .buttonStyle(PlainButtonStyle())
+                    .foregroundStyle(Color.primary)
                     Divider()
                 }
                 ForEach(filteredPlaces, id: \.id) { place in
@@ -43,7 +43,7 @@ struct SearchView: View {
                     }, label: {
                         SingleSearchResultView(resultName: place.name, iconMaterial: determineIconTypeAndColor(type: place.type))
                     })
-                    .buttonStyle(PlainButtonStyle())
+                    .foregroundStyle(Color.primary)
                     Divider()
                 }
             })
