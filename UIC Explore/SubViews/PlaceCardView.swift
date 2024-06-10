@@ -23,6 +23,7 @@ struct PlaceCardView: View {
                             .scaledToFill()
                     })
                     .frame(width: 200, height: 200)
+                    .clipped()
                     
             }, placeholder: {
                 ProgressView()
@@ -41,5 +42,5 @@ struct PlaceCardView: View {
 }
 
 #Preview {
-    PlaceCardView(image: testPlacesInBuilding.first!.image, title: testPlacesInBuilding.first!.name)
+    PlaceCardView(image: knownGlitchCard.image, title: knownGlitchCard.title)
 }
