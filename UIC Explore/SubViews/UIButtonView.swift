@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct UIButtonView: View {
-    @Environment(\.colorScheme) var viewMode
     let image: Image
     let text: String
     var body: some View {
