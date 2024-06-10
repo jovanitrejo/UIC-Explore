@@ -62,7 +62,7 @@ struct DirectoryTabView: View {
                                             .padding(.leading, index == 0 ? 16 : 0)
                                             .padding(.trailing, index == category.places.count - 1 ? 16 : 0)
                                     })
-                                    .buttonStyle(PlainButtonStyle())
+                                    .foregroundStyle(Color.primary)
                                 }
                             })
                         })
